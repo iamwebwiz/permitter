@@ -1,5 +1,9 @@
 @extends('layouts.dashboard')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/datatables/css/dataTables.bootstrap4.css') }}">
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -69,4 +73,13 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('javascript')
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/vendor/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+
+    <script>
+        $('table.table').DataTable();
+    </script>
 @stop

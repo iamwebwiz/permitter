@@ -47,6 +47,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Relationship with UserDetail model
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function details(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    /**
      * Get the dashboard link of user
      *
      * @return string

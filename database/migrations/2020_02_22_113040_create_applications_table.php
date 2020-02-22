@@ -18,9 +18,11 @@ class CreateApplicationsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('vehicle_type_id');
             $table->unsignedBigInteger('application_category_id');
-            $table->enum('type', ['Articulated Vehicle', 'Commercial', 'Private', 'Motorcycle']);
             $table->integer('test_score');
-            $table->string('application_state');
+            $table->string('state');
+            $table->string('residential_address');
+            $table->enum('status', ['pending', 'reviewed', 'processed', 'declined'])
+                ->comment('Status of the application');
             $table->timestamps();
 
             $table->foreign('user_id')

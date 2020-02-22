@@ -21,6 +21,8 @@ class CreateUserDetailsTable extends Migration
             $table->string('state_of_origin');
             $table->string('occupation');
             $table->string('residential_address');
+            $table->string('msword_document')->nullable();
+            $table->string('pdf_document')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

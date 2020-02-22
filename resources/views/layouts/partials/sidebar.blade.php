@@ -12,6 +12,13 @@
                             <i class="fa fa-fw fa-rocket"></i> Dashboard
                         </a>
                     </li>
+                    @if (auth()->user()->isApplicant())
+                        @include('layouts.partials.sidebars.applicant')
+                    @elseif (auth()->user()->isReviewer())
+                        @include('layouts.partials.sidebars.reviewer')
+                    @else
+                        @include('layouts.partials.sidebars.processor')
+                    @endif
                     <li class="nav-item">
                         <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.querySelector('#logout-form').submit();">
                             <i class="fa fa-fw fa-power-off"></i> Logout

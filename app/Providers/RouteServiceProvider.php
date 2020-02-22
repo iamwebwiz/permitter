@@ -40,6 +40,10 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapApplicantRoutes();
+
+        $this->mapReviewerRoutes();
+
+        $this->mapProcessorRoutes();
     }
 
     /**
@@ -56,11 +60,49 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
     }
 
+    /**
+     * Define the "applicant" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
     protected function mapApplicantRoutes(): void
     {
         Route::middleware('web')
-            ->name($this->namespace)
+            ->prefix('applicant')
+            ->namespace("$this->namespace\Applicant")
             ->group(base_path('routes/applicant.php'));
+    }
+
+    /**
+     * Define the "reviewer" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapReviewerRoutes(): void
+    {
+        Route::middleware('web')
+            ->prefix('reviewer')
+            ->namespace("$this->namespace\Reviewer")
+            ->group(base_path('routes/reviewer.php'));
+    }
+
+    /**
+     * Define the "processor" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapProcessorRoutes(): void
+    {
+        Route::middleware('web')
+            ->prefix('processor')
+            ->namespace("$this->namespace\Processor")
+            ->group(base_path('routes/processor.php'));
     }
 
     /**

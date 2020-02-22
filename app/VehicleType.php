@@ -12,4 +12,9 @@ class VehicleType extends Model
     {
         $this->attributes['name'] = ucwords($value);
     }
+
+    public function applications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Application::class, 'vehicle_type_id');
+    }
 }

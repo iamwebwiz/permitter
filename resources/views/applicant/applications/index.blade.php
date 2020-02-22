@@ -42,17 +42,21 @@
                                     <th scope="col">TEST SCORE</th>
                                     <th scope="col">STATE</th>
                                     <th scope="col">RESIDENTIAL ADDRESS</th>
+                                    <th scope="col">STATUS</th>
+                                    <th scope="col">DATE SUBMITTED</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($applications as $application)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
+                                            <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $application->vehicle->name }}</td>
                                             <td>{{ $application->category->name }}</td>
                                             <td>{{ $application->test_score }}</td>
                                             <td>{{ $application->state }}</td>
                                             <td>{{ $application->residential_address }}</td>
+                                            <td>{{ $application->status }}</td>
+                                            <td>{{ $application->created_at->format('jS F, Y') }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

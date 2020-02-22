@@ -3,29 +3,19 @@
 namespace App\Listeners\Applications;
 
 use App\Events\ApplicationSubmitted;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\ApplicationSubmittedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class SendNotificationToReviewer
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
      * @param  ApplicationSubmitted  $event
      * @return void
      */
-    public function handle(ApplicationSubmitted $event)
+    public function handle(ApplicationSubmitted $event): void
     {
-        //
+        Notification::send($event->data['reviewer'], new ApplicationSubmittedNotification($event->data));
     }
 }

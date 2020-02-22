@@ -3,7 +3,9 @@
 namespace App\Http\Actions\Applicant;
 
 use App\Http\Requests\Applicant\NewApplicationRequest;
+use App\Jobs\ApplicationSuccessNotification;
 use App\Repositories\ApplicationRepository;
+use App\User;
 
 class SubmitNewApplication
 {
@@ -17,6 +19,15 @@ class SubmitNewApplication
                 'message' => 'Unable to create application. Please review and try again.',
             ]);
         }
+
+        User::all()->filter(static function ($user) {
+            if ($user->isReviewer()) {
+                dispatch(new ApplicationSuccessNotification([
+                    'reviewer' => $user,
+                ]));
+            }
+        });
+
 
         return redirect()->route('applicant.applications')->with([
             'type' => 'success',

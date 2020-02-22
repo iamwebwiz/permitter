@@ -24,6 +24,8 @@
         </div>
     </div>
 
+    @include('layouts.partials.alerts')
+
     <div class="row mt-5">
         <div class="col-md-8">
             <div class="card border-3 border-top border-top-primary">
@@ -44,7 +46,7 @@
                             <h5>Category</h5>
                             @foreach ($categories as $category)
                                 <label class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" name="category" value="{{ $category->name }}" class="custom-control-input"><span class="custom-control-label">{{ $category->name }}</span>
+                                    <input type="radio" name="category" value="{{ $category->id }}" class="custom-control-input"><span class="custom-control-label">{{ $category->name }}</span>
                                 </label>
                             @endforeach
                         </div>
@@ -61,7 +63,7 @@
 
                         <div class="form-group">
                             <label for="residentialAddress">Residential Address</label>
-                            <input type="text" class="form-control" id="residentialAddress" placeholder="e.g. Ajah, Lagos">
+                            <input type="text" class="form-control" name="residential_address" id="residentialAddress" placeholder="e.g. Ajah, Lagos">
                         </div>
 
                         <input type="hidden" name="longitude" value="0">
@@ -85,6 +87,8 @@
 
         google.maps.event.addListener(autoComplete, 'place_changed', function () {
             const place = autoComplete.getPlace();
+            document.querySelector('input[name=longitude]').value = place.geometry.location.lng();
+            document.querySelector('input[name=latitude]').value = place.geometry.location.lat();
         });
     </script>
 @stop

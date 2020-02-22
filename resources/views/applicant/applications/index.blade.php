@@ -25,6 +25,8 @@
         </div>
     </div>
 
+    @include('layouts.partials.alerts')
+
     <div class="row mt-5">
         <div class="col-md-12">
             <div class="card border-3 border-top border-top-primary">

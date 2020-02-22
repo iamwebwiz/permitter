@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Application extends Model
 {
+    public const PENDING_STATUS = 'pending';
+
+    public const REVIEWED_STATUS = 'reviewed';
+
+    public const PROCESSED_STATUS = 'processed';
+
+    public const DECLINED_STATUS = 'declined';
+
     protected $guarded = [];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -21,17 +29,6 @@ class Application extends Model
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(ApplicationCategory::class, 'application_category_id');
-    }
-
-    /**
-     * Define an accessor for the "status" attribute
-     *
-     * @param $value
-     * @return string
-     */
-    public function getStatusAttribute($value): string
-    {
-        return strtoupper($value);
     }
 
     /**

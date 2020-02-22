@@ -24,4 +24,27 @@ class ApplicationRepository
             'latitude' => $request->latitude,
         ]);
     }
+
+    public function getApplicationStatistics(): array
+    {
+        $applications = Application::all();
+
+        $data = [];
+
+        $data['all'] = $applications;
+
+        $data['pending'] = $applications->filter(static function ($application) {
+            return $application->status === Application::PENDING_STATUS ? $application : [];
+        });
+
+        $data['approved'] = $applications->filter(static function ($application) {
+            return $application->status === Application::PROCESSED_STATUS ? $application : [];
+        });
+
+        $data['rejected'] = $applications->filter(static function ($application) {
+            return $application->status === Application::DECLINED_STATUS ? $application : [];
+        });
+
+        return $data;
+    }
 }

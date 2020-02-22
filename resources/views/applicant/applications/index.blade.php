@@ -59,7 +59,7 @@
                                             <td>{{ $application->test_score }}</td>
                                             <td>{{ $application->state }}</td>
                                             <td>{{ $application->residential_address }}</td>
-                                            <td>{{ $application->status }}</td>
+                                            <td>{{ strtoupper($application->status) }}</td>
                                             <td>{{ $application->created_at->format('jS F, Y') }}</td>
                                         </tr>
                                     @endforeach

@@ -69,9 +69,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApplicantRoutes(): void
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'role:applicant'])
             ->prefix('applicant')
             ->namespace("$this->namespace\Applicant")
+            ->name('applicant.')
             ->group(base_path('routes/applicant.php'));
     }
 
@@ -84,9 +85,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapReviewerRoutes(): void
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'role:reviewer'])
             ->prefix('reviewer')
             ->namespace("$this->namespace\Reviewer")
+            ->name('reviewer.')
             ->group(base_path('routes/reviewer.php'));
     }
 
@@ -99,9 +101,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapProcessorRoutes(): void
     {
-        Route::middleware('web')
+        Route::middleware(['web', 'role:processor'])
             ->prefix('processor')
             ->namespace("$this->namespace\Processor")
+            ->name('processor.')
             ->group(base_path('routes/processor.php'));
     }
 

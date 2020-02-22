@@ -63,7 +63,15 @@ class User extends Authenticatable
      */
     public function getDashboardLinkAttribute(): string
     {
-        return '/home';
+        if ($this->isProcessor()) {
+            return route('processor.dashboard');
+        }
+
+        if ($this->isReviewer()) {
+            return route('reviewer.dashboard');
+        }
+
+        return route('applicant.dashboard');
     }
 
     /**
@@ -94,5 +102,20 @@ class User extends Authenticatable
     public function setLastNameAttribute($value): void
     {
         $this->attributes['last_name'] = ucfirst($value);
+    }
+
+    public function isApplicant(): bool
+    {
+        return $this->hasRole(self::APPLICANT_ROLE);
+    }
+
+    public function isReviewer(): bool
+    {
+        return $this->hasRole(self::REVIEWER_ROLE);
+    }
+
+    public function isProcessor(): bool
+    {
+        return $this->hasRole(self::PROCESSOR_ROLE);
     }
 }

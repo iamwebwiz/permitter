@@ -17,7 +17,7 @@ class CreateUserDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->date('date_of_birth');
-            $table->string('gender');
+            $table->enum('gender', ['male', 'female']);
             $table->string('state_of_origin');
             $table->string('occupation');
             $table->string('residential_address');

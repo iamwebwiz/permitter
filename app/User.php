@@ -75,4 +75,24 @@ class User extends Authenticatable
     {
         return "{$this->name} {$this->last_name}";
     }
+
+    /**
+     * Set the first name attribute for the user
+     *
+     * @param $value
+     */
+    public function setNameAttribute($value): void
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
+
+    /**
+     * Set the last name attribute for the user
+     *
+     * @param $value
+     */
+    public function setLastNameAttribute($value): void
+    {
+        $this->attributes['last_name'] = ucfirst($value);
+    }
 }

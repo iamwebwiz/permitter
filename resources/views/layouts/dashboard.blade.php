@@ -21,6 +21,10 @@
             font-size: medium;
         }
 
+        label {
+            font-size: 1.1rem;
+        }
+
         .sidebar-dark.nav-left-sidebar .navbar-nav .nav-link {
             font-size: 1.25rem;
         }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Applicant;
 
+use App\ApplicationCategory;
 use App\Http\Actions\Applicant\SubmitNewApplication;
 use App\Http\Requests\Applicant\NewApplicationRequest;
 use App\Repositories\ApplicationRepository;
@@ -27,12 +28,16 @@ class ApplicationController extends Controller
     public function create()
     {
         return view('applicant.applications.create', [
-            'vehicle_types' => VehicleType::pluck('name')
+            'vehicleTypes' => VehicleType::all(),
+            'categories' => ApplicationCategory::all(),
         ]);
     }
 
     public function store(Request $request)
     {
-        return (new SubmitNewApplication())->execute(new NewApplicationRequest($request->all()));
+        return (new SubmitNewApplication())->execute(
+            new NewApplicationRequest($request->all()),
+            new ApplicationRepository()
+        );
     }
 }

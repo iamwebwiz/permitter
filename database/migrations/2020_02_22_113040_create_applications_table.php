@@ -21,8 +21,13 @@ class CreateApplicationsTable extends Migration
             $table->integer('test_score');
             $table->string('state');
             $table->string('residential_address');
+            $table->float('longitude');
+            $table->float('latitude');
             $table->enum('status', ['pending', 'reviewed', 'processed', 'declined'])
+                ->default('pending')
                 ->comment('Status of the application');
+            $table->text('reviewer_comment')->nullable();
+            $table->text('processor_comment')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

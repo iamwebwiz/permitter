@@ -24,7 +24,7 @@ class NewApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vehicle_type' => 'required',
+            'type' => 'required',
             'test_score' => 'required|numeric|between:0,100',
             'state' => 'required|string',
             'category' => 'required',

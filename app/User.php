@@ -10,6 +10,15 @@ class User extends Authenticatable
 {
     use Notifiable, HasRoles;
 
+    /** @var string */
+    public const APPLICANT_ROLE = 'applicant';
+
+    /** @var string */
+    public const REVIEWER_ROLE = 'reviewer';
+
+    /** @var string */
+    public const PROCESSOR_ROLE = 'processor';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -37,8 +46,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the dashboard link of user
+     *
+     * @return string
+     */
     public function getDashboardLinkAttribute(): string
     {
         return '/home';
+    }
+
+    /**
+     * Get the full name of the user
+     *
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->name} {$this->last_name}";
     }
 }
